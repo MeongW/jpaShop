@@ -1,5 +1,6 @@
 package com.example.shop.domain;
 
+import com.example.shop.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,5 +30,14 @@ public class Member {
 
     @OneToMany(mappedBy="member")
     private List<Comment> comments = new ArrayList<>();
+
+    public static Member to(MemberDto memberDto) {
+        Member member = new Member();
+        member.setId(memberDto.getId());
+        member.setName(memberDto.getName());
+        member.setEmail(memberDto.getEmail());
+        member.setRegisterDate(memberDto.getRegisterDate());
+        return member;
+    }
 
 }
