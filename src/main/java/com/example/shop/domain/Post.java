@@ -1,5 +1,6 @@
 package com.example.shop.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
+    @JsonManagedReference
     private Member member;
 
     @OneToMany(mappedBy="post")
