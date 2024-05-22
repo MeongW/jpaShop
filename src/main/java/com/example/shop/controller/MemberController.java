@@ -3,6 +3,7 @@ package com.example.shop.controller;
 import com.example.shop.domain.Member;
 import com.example.shop.dto.MemberDto;
 import com.example.shop.service.MemberService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +52,21 @@ public class MemberController {
             return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<MemberDto> updateMember(@PathVariable Long id, @RequestBody MemberDto memberDto) {
+        try {
+            Member updatedMember = memberService.updateMember(id, memberDto);
+            return ResponseEntity.ok(MemberDto.from(updatedMember));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMember(@PathVariable Long id) {
+        memberService.deleteMember(id);
+        return ResponseEntity.noContent().build();
     }
 }

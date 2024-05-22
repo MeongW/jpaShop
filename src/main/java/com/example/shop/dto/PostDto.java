@@ -1,5 +1,6 @@
 package com.example.shop.dto;
 
+import com.example.shop.domain.Member;
 import com.example.shop.domain.Post;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ public class PostDto {
     private String title;
     private String content;
     private LocalDateTime postDate;
-    private MemberDto member;
+    private Long memberId;
 
     public static PostDto from(Post post) {
         PostDto postDto = new PostDto();
@@ -21,9 +22,7 @@ public class PostDto {
         postDto.setTitle(post.getTitle());
         postDto.setContent(post.getContent());
         postDto.setPostDate(post.getPostDate());
-        if (post.getMember() != null) {
-            postDto.setMember(MemberDto.from(post.getMember()));
-        }
+        postDto.setMemberId(post.getMember().getId());
         return postDto;
     }
 }

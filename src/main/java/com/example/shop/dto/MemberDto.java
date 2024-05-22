@@ -23,4 +23,14 @@ public class MemberDto {
         memberDto.setRegisterDate(member.getRegisterDate());
         return memberDto;
     }
+
+    public static Member to(MemberDto memberDto) {
+        Member member = new Member();
+        member.setId(memberDto.getId());
+        member.setName(memberDto.getName());
+        member.setEmail(memberDto.getEmail());
+        member.setRegisterDate(memberDto.getRegisterDate());
+        return member;
+    }
+
 }

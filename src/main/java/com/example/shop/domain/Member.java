@@ -30,14 +30,4 @@ public class Member {
 
     @OneToMany(mappedBy="member")
     private List<Comment> comments = new ArrayList<>();
-
-    public static Member to(MemberDto memberDto) {
-        Member member = new Member();
-        member.setId(memberDto.getId());
-        member.setName(memberDto.getName());
-        member.setEmail(memberDto.getEmail());
-        member.setRegisterDate(memberDto.getRegisterDate());
-        return member;
-    }
-
 }
